@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Password checker</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="css/password_checker.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+    .valid::before {
+        content: "\f087";
+    }
+
+    .invalid::before {}
+    </style>
+</head>
+
+<body>
+    <input type="email" placeholder="e-mail address" id="mail" />
+    </br>
+    <input type="password" placeholder="enter your password" id="psw" />
+    </br>
+    <table>
+        <tr>
+            <!-- <td></td> -->
+            <td id="capital_letter">Barem jedno veliko slovo</td>
+        </tr>
+        <tr>
+            <!-- <td></td> -->
+            <td id="number">Barem jedan broj</td>
+        </tr>
+        <tr>
+            <!-- <td></td> -->
+            <td id="letter">Barem jedno malo slovo slovo</td>
+        </tr>
+        <tr>
+            <!-- <td></td> -->
+            <td id="pswLength">Barem osam karaktera slovo</td>
+        </tr>
+        <tr>
+            <!-- <td></td> -->
+            <td id="special_char">Barem jedan specijalni karakter</td>
+        </tr>
+    </table>
+    <script>
+    $(document).ready(function() {
+        $("#psw").keyup(function() {
+            // debugger;
+            var pswd = $("#psw").val();
+            var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-="
+
+            $.each(pswd.split(''), function(i) {
+                if (pswd.length >= 8) {
+                    $("#pswLength").removeClass('invalid').addClass('valid');
+                    // console.log("aaa")
+                } else {
+                    $("#pswLength").removeClass('valid').addClass('invalid');
+                    // console.log("bbb")
+                }
+
+                if (pswd.match(/[A-Z]/)) {
+                    $("#capital_letter").removeClass('invalid').addClass('valid');
+                    // console.log("aaa")
+                } else {
+                    $("#capital_letter").removeClass('valid').addClass('invalid');
+                    // console.log("bbb")
+                }
+                if (pswd.match(/[a-z]/)) {
+                    $("#letter").removeClass('invalid').addClass('valid');
+                    // // console.log("aaa") //
+                } else {
+                    $("#letter").removeClass('valid').addClass('invalid');
+                    // // console.log("bbb") // 
+                }
+                if (pswd.match(/[0-9]/)) {
+                    $("#number").removeClass('invalid').addClass('valid');
+                    // console.log("aaa")
+                } else {
+                    $("#number").removeClass('valid').addClass('invalid');
+                    // console.log("bbb")
+                }
+                if (pswd.match(/^[a-zA-Z0-9]*$/)) {
+                    $("#special_char").removeClass('invalid').addClass('valid');
+                    console.log("true")
+                } else {
+                    $("#special_char").removeClass('valid').addClass('invalid');
+                    console.log("false");
+                }
+
+            });
+        });
+    })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/password_checker.js"></script>
+</body>
+
+</html>
