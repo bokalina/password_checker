@@ -14,9 +14,13 @@
     <style type="text/css">
     .valid::before {
         content: "\f087";
+        font-family: FontAwesome;
     }
 
-    .invalid::before {}
+    .invalid::before {
+        content: "\f088";
+        font-family: FontAwesome;
+    }
     </style>
 </head>
 
@@ -27,23 +31,18 @@
     </br>
     <table>
         <tr>
-            <!-- <td></td> -->
             <td id="capital_letter">Barem jedno veliko slovo</td>
         </tr>
         <tr>
-            <!-- <td></td> -->
             <td id="number">Barem jedan broj</td>
         </tr>
         <tr>
-            <!-- <td></td> -->
             <td id="letter">Barem jedno malo slovo slovo</td>
         </tr>
         <tr>
-            <!-- <td></td> -->
             <td id="pswLength">Barem osam karaktera slovo</td>
         </tr>
         <tr>
-            <!-- <td></td> -->
             <td id="special_char">Barem jedan specijalni karakter</td>
         </tr>
     </table>
@@ -52,7 +51,7 @@
         $("#psw").keyup(function() {
             // debugger;
             var pswd = $("#psw").val();
-            var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-="
+            // var specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-="
 
             $.each(pswd.split(''), function(i) {
                 if (pswd.length >= 8) {
@@ -84,12 +83,13 @@
                     $("#number").removeClass('valid').addClass('invalid');
                     // console.log("bbb")
                 }
-                if (pswd.match(/^[a-zA-Z0-9]*$/)) {
+
+                if (pswd.match(!(/^[a-zA-Z0-9]*$/))) {
                     $("#special_char").removeClass('invalid').addClass('valid');
-                    console.log("true")
+                    // console.log("true")
                 } else {
                     $("#special_char").removeClass('valid').addClass('invalid');
-                    console.log("false");
+                    // console.log("false");
                 }
 
             });
